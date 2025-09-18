@@ -56,7 +56,7 @@ class RouteServiceProvider extends ServiceProvider
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
 
-        RateLimiter::for('lookup-throttle', function (Request $request) {
+        RateLimiter::for('lookup', function (Request $request) {
             return Limit::perMinute(30)->by($request->ip());
         });
     }
