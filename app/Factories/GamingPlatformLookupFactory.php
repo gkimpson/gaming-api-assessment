@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace App\Factories;
 
 use App\Contracts\GamingPlatformLookupInterface;
+use App\Enums\GamingPlatform;
 use App\Exceptions\UnsupportedPlatformException;
 use App\Services\MinecraftLookupService;
 use App\Services\SteamLookupService;
 use App\Services\XboxLiveLookupService;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Contracts\Container\Container;
 
 /**
  * Gaming Platform Lookup Factory
@@ -17,38 +20,37 @@ use App\Services\XboxLiveLookupService;
  */
 class GamingPlatformLookupFactory
 {
-    private array $services;
+    private array $serviceMap;
 
     /**
      * Create a new gaming platform lookup factory
      */
     public function __construct(
-        MinecraftLookupService $minecraftService,
-        SteamLookupService $steamService,
-        XboxLiveLookupService $xboxLiveService
+        private readonly Container $container
     ) {
-        $this->services = [
-            'minecraft' => $minecraftService,
-            'steam' => $steamService,
-            'xbl' => $xboxLiveService,
+        $this->serviceMap = [
+            GamingPlatform::MINECRAFT->value => MinecraftLookupService::class,
+            GamingPlatform::STEAM->value => SteamLookupService::class,
+            GamingPlatform::XBOX_LIVE->value => XboxLiveLookupService::class,
         ];
     }
 
     /**
      * Create a lookup service instance for the specified platform
      *
-     * @param  string  $platform  The gaming platform identifier (minecraft, steam, xbl)
+     * @param  string  $platform  The gaming platform identifier
      * @return GamingPlatformLookupInterface The appropriate platform service
      *
      * @throws UnsupportedPlatformException When the platform is not supported
+     * @throws BindingResolutionException When the service cannot be resolved from the container
      */
     public function make(string $platform): GamingPlatformLookupInterface
     {
-        if (! array_key_exists($platform, $this->services)) {
+        if (! array_key_exists($platform, $this->serviceMap)) {
             throw new UnsupportedPlatformException($platform);
         }
 
-        return $this->services[$platform];
+        return $this->container->make($this->serviceMap[$platform]);
     }
 
     /**
@@ -58,7 +60,7 @@ class GamingPlatformLookupFactory
      */
     public function getSupportedPlatforms(): array
     {
-        return array_keys($this->services);
+        return GamingPlatform::values();
     }
 
     /**
@@ -69,6 +71,6 @@ class GamingPlatformLookupFactory
      */
     public function isSupported(string $platform): bool
     {
-        return array_key_exists($platform, $this->services);
+        return array_key_exists($platform, $this->serviceMap);
     }
 }

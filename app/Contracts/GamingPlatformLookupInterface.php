@@ -8,9 +8,6 @@ use App\DTOs\UserProfileDto;
 use App\Exceptions\PlatformUnavailableException;
 use App\Exceptions\UserNotFoundException;
 
-/**
- * Gaming Platform Lookup Interface
- */
 interface GamingPlatformLookupInterface
 {
     /**
@@ -52,7 +49,7 @@ interface GamingPlatformLookupInterface
     /**
      * Get the platform identifier name
      *
-     * @return string The platform name (e.g 'minecraft', 'steam', 'xbl')
+     * @return string The platform name
      */
     public function getPlatformName(): string;
 }

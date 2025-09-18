@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\Factories\GamingPlatformLookupFactory;
+use App\Services\CachedGamingPlatformLookup;
 use App\Services\MinecraftLookupService;
 use App\Services\SteamLookupService;
 use App\Services\XboxLiveLookupService;
 use GuzzleHttp\Client;
+use Illuminate\Contracts\Cache\Repository as Cache;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -20,38 +22,41 @@ class GamingPlatformServiceProvider extends ServiceProvider
     {
         $this->app->bind(Client::class, function () {
             return new Client([
-                'timeout' => 30,    // TODO: Add to config
-                'connect_timeout' => 10, // TODO: Add to config
+                'timeout' => 30,
+                'connect_timeout' => 10,
             ]);
         });
 
+        // Bind services with caching decorators
         $this->app->bind(MinecraftLookupService::class, function ($app) {
-            return new MinecraftLookupService(
+            $service = new MinecraftLookupService(
                 $app->make(Client::class),
                 config('services.gaming_platforms.minecraft')
             );
+
+            return new CachedGamingPlatformLookup($service, $app->make(Cache::class));
         });
 
         $this->app->bind(SteamLookupService::class, function ($app) {
-            return new SteamLookupService(
+            $service = new SteamLookupService(
                 $app->make(Client::class),
                 config('services.gaming_platforms.steam')
             );
+
+            return new CachedGamingPlatformLookup($service, $app->make(Cache::class));
         });
 
         $this->app->bind(XboxLiveLookupService::class, function ($app) {
-            return new XboxLiveLookupService(
+            $service = new XboxLiveLookupService(
                 $app->make(Client::class),
                 config('services.gaming_platforms.xbl')
             );
+
+            return new CachedGamingPlatformLookup($service, $app->make(Cache::class));
         });
 
         $this->app->singleton(GamingPlatformLookupFactory::class, function ($app) {
-            return new GamingPlatformLookupFactory(
-                $app->make(MinecraftLookupService::class),
-                $app->make(SteamLookupService::class),
-                $app->make(XboxLiveLookupService::class)
-            );
+            return new GamingPlatformLookupFactory($app);
         });
     }
 
