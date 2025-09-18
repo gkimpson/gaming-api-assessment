@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Exceptions;
 
+use App\Enums\GamingPlatform;
 use InvalidArgumentException;
 
 /**
@@ -18,6 +19,7 @@ class UnsupportedPlatformException extends InvalidArgumentException
      */
     public function __construct(string $platform)
     {
-        parent::__construct("Gaming platform '$platform' is not supported. Supported platforms: minecraft, steam, xbl"); // TODO: Use ENUMS later
+        $supportedPlatforms = GamingPlatform::implode();
+        parent::__construct("Gaming platform '$platform' is not supported. Supported platforms: $supportedPlatforms");
     }
 }

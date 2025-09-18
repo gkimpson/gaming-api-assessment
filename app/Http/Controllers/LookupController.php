@@ -9,6 +9,7 @@ use App\Exceptions\PlatformUnavailableException;
 use App\Exceptions\UserNotFoundException;
 use App\Factories\GamingPlatformLookupFactory;
 use App\Http\Requests\LookupRequest;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\JsonResponse;
 use InvalidArgumentException;
 use Throwable;
@@ -29,6 +30,7 @@ class LookupController extends BaseController
     /**
      * @throws PlatformUnavailableException
      * @throws UserNotFoundException
+     * @throws BindingResolutionException
      */
     private function performUserLookup(LookupRequest $request, GamingPlatformLookupFactory $factory): UserProfileDto
     {

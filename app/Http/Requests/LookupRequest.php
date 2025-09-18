@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
+use App\Enums\GamingPlatform;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LookupRequest extends FormRequest
@@ -19,9 +22,8 @@ class LookupRequest extends FormRequest
      */
     public function rules(): array
     {
-        // TODO: Use ENUMS later like you always do :)
         return [
-            'type' => 'required|in:minecraft,steam,xbl',
+            'type' => ['required', 'in:'.GamingPlatform::implode(',')],
             'username' => 'required_without:id',
             'id' => 'required_without:username',
         ];
