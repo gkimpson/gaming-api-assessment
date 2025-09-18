@@ -100,4 +100,4 @@ For detailed import instructions, visit: https://learning.postman.com/docs/getti
 
 ## Project Structure
 
-For detailed information about the tech test requirements and implementation details, see `INSTRUCTIONS.md`.
+For detailed information about the tech test requirements and implementation details, see `TASK.md`.
