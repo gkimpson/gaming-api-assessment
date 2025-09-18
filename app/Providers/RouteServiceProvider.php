@@ -30,8 +30,6 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Define your route model bindings, pattern filters, etc.
-     *
-     * @return void
      */
     public function boot(): void
     {
@@ -51,8 +49,6 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Configure the rate limiters for the application.
-     *
-     * @return void
      */
     protected function configureRateLimiting(): void
     {
@@ -61,7 +57,7 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         RateLimiter::for('lookup-throttle', function (Request $request) {
-            return Limit::perMinute(15)->by($request->ip());
+            return Limit::perMinute(30)->by($request->ip());
         });
     }
 }
