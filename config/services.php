@@ -31,25 +31,26 @@ return [
     ],
 
     'gaming_platforms' => [
+        'cache_ttl_hours' => (int) env('GAMING_PLATFORM_CACHE_TTL_HOURS', 24),
         'minecraft' => [
-            'api_base' => 'https://api.mojang.com',
-            'session_server' => 'https://sessionserver.mojang.com',
-            'avatar_base' => 'https://crafatar.com/avatars/',
-            'timeout' => 10,
+            'api_base' => env('MINECRAFT_API_URL', 'https://api.mojang.com'),
+            'session_server' => env('MINECRAFT_SESSION_SERVER', 'https://sessionserver.mojang.com'),
+            'avatar_base' => env('MINECRAFT_AVATAR_BASE', 'https://crafatar.com/avatars/'),
             'supports_username' => true,
             'supports_id' => true,
+            'timeout' => (int) env('MINECRAFT_TIMEOUT', 30),
         ],
         'steam' => [
-            'api_base' => 'https://ident.tebex.io/usernameservices/4',
-            'timeout' => 10,
+            'api_base' => env('STEAM_API_URL', 'https://ident.tebex.io/usernameservices/4'),
             'supports_username' => false,
             'supports_id' => true,
+            'timeout' => (int) env('STEAM_TIMEOUT', 30),
         ],
         'xbl' => [
-            'api_base' => 'https://ident.tebex.io/usernameservices/3',
-            'timeout' => 10,
+            'api_base' => env('XBOX_LIVE_API_URL', 'https://ident.tebex.io/usernameservices/3'),
             'supports_username' => true,
             'supports_id' => true,
+            'timeout' => (int) env('XBOX_LIVE_TIMEOUT', 30),
         ],
     ],
 
