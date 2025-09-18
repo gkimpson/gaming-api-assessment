@@ -3,8 +3,8 @@
 ## Requirements
 
 - PHP 8+ (PHP 8.3 recommended)
-- Composer
-- Node
+- Composer 2.0+
+- Node.js 18+ and npm
 - SQLite (default database)
 
 ## Installation
@@ -12,7 +12,7 @@
 ### 1. Clone the repository
 ```bash
 git clone <repository-url>
-cd tech-task
+cd <repository-directory>
 ```
 
 ### 2. Install dependencies
