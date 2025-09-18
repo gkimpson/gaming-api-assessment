@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "d0b4e7d9-1d1e-4c2e-9a1a-8b2a2b1a4b2a",
+		"name": "Tebex Tech Test - GK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"description": "Collection for testing the Tebex Tech Test API endpoints"
+	},
+	"item": [
+		{
+			"name": "Xbox Live - Username Lookup",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/lookup?type=xbl&username=tebex",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"lookup"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "xbl"
+						},
+						{
+							"key": "username",
+							"value": "tebex"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Xbox Live - ID Lookup",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/lookup?type=xbl&id=2533274884045330",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"lookup"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "xbl"
+						},
+						{
+							"key": "id",
+							"value": "2533274884045330"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Steam - Username Lookup (Error)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/lookup?type=steam&username=test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"lookup"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "steam"
+						},
+						{
+							"key": "username",
+							"value": "test"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Steam - ID Lookup",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/lookup?type=steam&id=76561198806141009",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"lookup"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "steam"
+						},
+						{
+							"key": "id",
+							"value": "76561198806141009"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Minecraft - ID Lookup",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/lookup?type=minecraft&id=d8d5a9237b2043d8883b1150148d6955",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"lookup"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "minecraft"
+						},
+						{
+							"key": "id",
+							"value": "d8d5a9237b2043d8883b1150148d6955"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Minecraft - Username Lookup",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/lookup?type=minecraft&username=Notch",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"lookup"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "minecraft"
+						},
+						{
+							"key": "username",
+							"value": "Notch"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Non-existent User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/lookup?type=minecraft&username=NonExistentUser12345",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"lookup"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "minecraft"
+						},
+						{
+							"key": "username",
+							"value": "NonExistentUser12345"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
