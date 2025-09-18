@@ -66,6 +66,19 @@ php artisan test --parallel
 
 Note: Tests do not provide full code coverage.
 
+### Code Quality
+Laravel Pint is installed for code style formatting and linting:
+
+```bash
+./vendor/bin/pint
+```
+
+To check code style without fixing:
+
+```bash
+./vendor/bin/pint --test
+```
+
 ## API Usage
 
 The application provides a lookup endpoint that supports different gaming platforms:
