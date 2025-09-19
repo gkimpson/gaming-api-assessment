@@ -64,6 +64,9 @@ For faster execution with parallel testing:
 php artisan test --parallel
 ```
 
+#### Coverage Report
+A code coverage report is available at `coverage_report/index.html` after running tests with coverage analysis. Open this file in your browser to view detailed coverage metrics.
+
 Note: Tests do not provide full code coverage.
 
 ### Code Quality
