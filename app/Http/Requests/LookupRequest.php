@@ -8,7 +8,7 @@ use App\Enums\GamingPlatform;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class LookupRequest extends FormRequest
 {
@@ -45,7 +45,7 @@ class LookupRequest extends FormRequest
             response()->json([
                 'message' => 'The given data was invalid.',
                 'errors' => $validator->errors(),
-            ], Response::HTTP_UNPROCESSABLE_ENTITY)
+            ], ResponseAlias::HTTP_UNPROCESSABLE_ENTITY)
         );
     }
 }
