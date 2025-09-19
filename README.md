@@ -69,6 +69,9 @@ A code coverage report is available at `coverage_report/index.html` after runnin
 
 Note: Tests do not provide full code coverage.
 
+<img width="1207" height="528" alt="image" src="https://github.com/user-attachments/assets/af9cf6b1-e98c-4e84-988d-f0267ad9691f" />
+
+
 ### Code Quality
 Laravel Pint is installed for code style formatting and linting:
 
